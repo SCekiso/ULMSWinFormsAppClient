@@ -66,6 +66,7 @@
             txtEnrollStudentId.Name = "txtEnrollStudentId";
             txtEnrollStudentId.Size = new Size(224, 27);
             txtEnrollStudentId.TabIndex = 2;
+            txtEnrollStudentId.TextChanged += txtEnrollStudentId_TextChanged;
             // 
             // txtEnrollStudentName
             // 
@@ -86,7 +87,7 @@
             // cmbCourse
             // 
             cmbCourse.FormattingEnabled = true;
-            cmbCourse.Items.AddRange(new object[] { "Programming 1", "Database Systems", "Web Development", "", "Software Testing" });
+            cmbCourse.Items.AddRange(new object[] { "Programming 1", "Database Systems", "Web Development", "Project Management", "Software Testing" });
             cmbCourse.Location = new Point(176, 142);
             cmbCourse.Name = "cmbCourse";
             cmbCourse.Size = new Size(224, 28);
@@ -104,7 +105,7 @@
             // cmbSemester
             // 
             cmbSemester.FormattingEnabled = true;
-            cmbSemester.Items.AddRange(new object[] { "Semester 1", "", "Semester 2" });
+            cmbSemester.Items.AddRange(new object[] { "Semester 1", "Semester 2" });
             cmbSemester.Location = new Point(171, 206);
             cmbSemester.Name = "cmbSemester";
             cmbSemester.Size = new Size(229, 28);

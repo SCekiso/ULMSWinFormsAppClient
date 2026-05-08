@@ -16,18 +16,53 @@ namespace ULMSWinFormsApp.Forms
             InitializeComponent();
         }
 
-
+        //This is the corrected code :
         private void btnSaveStudent_Click(object sender, EventArgs e)
         {
-            // Intentional weak validation for testing purposes
+            // Validate empty fields
+            if (string.IsNullOrWhiteSpace(txtStudentId.Text) ||
+                string.IsNullOrWhiteSpace(txtFullName.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtAge.Text) ||
+                cmbProgramme.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            // Validate Student ID (numbers only)
+            if (!int.TryParse(txtStudentId.Text, out int studentIdNumber))
+            {
+                MessageBox.Show("Please enter a valid numeric Student ID.");
+                return;
+            }
+
+            //the new code to validate age input (numbers only and within the range of 18-30)
+            if (!int.TryParse(txtAge.Text, out int age) || age < 18 || age > 30)
+            {
+                MessageBox.Show("Please enter a valid age from (18-30).");
+                return;
+            }
+
+            //the new code is to validate email format (basic check for "@" and ".")
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
+            //the new code to create a student object and display the details in the output textbox
             Student student = new Student
             {
                 StudentId = txtStudentId.Text,
                 FullName = txtFullName.Text,
                 Email = txtEmail.Text,
-                Age = int.Parse(txtAge.Text),
+                Age = age,
                 Programme = cmbProgramme.Text
             };
+
+            //added code to save student data to shared data for use in other forms
+            SharedData.StudentId = student.StudentId;
+            SharedData.StudentName = student.FullName;
 
             txtStudentOutput.Text =
                 "Student saved successfully!" + Environment.NewLine +
@@ -37,6 +72,7 @@ namespace ULMSWinFormsApp.Forms
                 "Age: " + student.Age + Environment.NewLine +
                 "Programme: " + student.Programme;
         }
+
 
         private void btnClearStudent_Click(object sender, EventArgs e)
         {

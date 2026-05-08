@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ULMSWinFormsApp.Tests/ULMSWinFormsApp.Tests.csproj" Id="7ebd3c9b-f61f-4735-b4a5-5327bdf43f2c" />
   <Project Path="ULMSWinFormsApp/ULMSWinFormsApp.csproj" />
 </Solution>
